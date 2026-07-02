@@ -47,7 +47,9 @@ export default async function Layout({
       repo,
       decodedBranch,
       {
+        sync: true,
         getToken: async () => token,
+        ttlMs: 0,
       },
     );
 
