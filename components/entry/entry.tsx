@@ -169,7 +169,7 @@ export function Entry({
               : undefined
           }
         }]
-      : schema?.list === true
+      : Boolean(schema?.list)
         ? [{
             name: "listWrapper",
             label: false,
@@ -182,10 +182,10 @@ export function Entry({
 
   const entryContentObject = useMemo(() => {
     return path
-      ? schema?.list === true
+      ? Boolean(schema?.list)
         ? { listWrapper: entry?.contentObject }
         : entry?.contentObject
-      : schema?.list === true
+      : Boolean(schema?.list)
         ? { listWrapper: [] }
         : {};
   }, [schema, entry, path]);
@@ -370,7 +370,7 @@ export function Entry({
           body: JSON.stringify({
             type: path === ".pages.yml" ? "settings" : "content",
             name,
-            content: schema?.list === true
+            content: schema?.list
               ? contentObject.listWrapper
               : contentObject,
             sha: sha
